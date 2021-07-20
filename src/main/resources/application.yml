@@ -1,16 +1,26 @@
 quarkus:
   datasource:
     cust:
-      db-kind: mysql
+      db-kind: postgresql
     admin:
-      db-kind: mysql
+      db-kind: postgresql
   hibernate-orm:
     admin:
+      database:
+        generation: none
+      multitenant: DATABASE
       datasource: admin
-      packages: [ ac.me.entity.admin ]
-#      dialect: org.hibernate.dialect.MySQL57Dialect
+      packages: ac.me.entity.admin
     cust:
+      database:
+        generation: none
       multitenant: DATABASE
       datasource: cust
       packages: ac.me.entity.cust
-#      dialect: org.hibernate.dialect.MySQL57Dialect
+  flyway:
+    cust:
+      locations: classpath:database/cust
+      migrate-at-start: true
+    admin:
+      locations: classpath:database/admin
+      migrate-at-start: true

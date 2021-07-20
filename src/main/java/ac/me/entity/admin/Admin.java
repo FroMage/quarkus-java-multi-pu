@@ -7,5 +7,5 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Admin extends PanacheEntity {
-    String name = "";
+    public String name;
 }
